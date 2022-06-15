@@ -21,11 +21,11 @@ jobs:
           paths:
             - .
       - run:
-        name: build and push Docker image
-        command: |
-          docker build -t matthlc92/$IMAGE_NAME:$TAG .
-          echo $DOCKER_PWD | docker login -u $DOCKER_LOGIN --password-stdin
-          docker push matthlc92/$IMAGE_NAME:$TAG
+          name: build and push Docker image
+          command: |
+            docker build -t matthlc92/$IMAGE_NAME:$TAG .
+            echo $DOCKER_PWD | docker login -u $DOCKER_LOGIN --password-stdin
+            docker push matthlc92/$IMAGE_NAME:$TAG
 
 
 
