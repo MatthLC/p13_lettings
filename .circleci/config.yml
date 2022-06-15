@@ -37,6 +37,7 @@ workflows:
     jobs:
       - build_and_test
       - docker_build_and_push:
+          context: ENV_VAR_LETTING
           requires:
             - build_and_test
 
