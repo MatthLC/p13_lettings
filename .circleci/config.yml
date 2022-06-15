@@ -4,19 +4,19 @@ orbs:
   python: circleci/python@2.0.3
 
 jobs:
-  build_and_test:
-    executor: python/default
+  build_and_test: # this can be any name you choose
+    executor: python/default # use the default executor defined within the orb
     steps:
-      - checkout
+      - checkout # checkout source code
       - python/install-packages:
-        pkg-manager: pip
+          pkg-manager: pip
       - run:
-        name: run build
-        command: python -m pytest
+          name: Run tests
+          command: python -m pytest
       - persist_to_workspace:
-        root: ~/project
-        paths:
-          - .
+          root: ~/project
+          paths:
+            - .
 
 workflows:
   build_test:
