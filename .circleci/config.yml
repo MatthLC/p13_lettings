@@ -23,12 +23,24 @@ jobs:
             - .
 
   check-and-build-only:
-      executor: docker/machine
-      steps:
-        - checkout
-        - docker/check
-        - docker/build:
-            image: $CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME
+    docker:
+      - image: cimg/base:2022.06
+        auth:
+          username: matthlc92
+          password: $DOCKER_PASSWORD
+    steps:
+      - checkout
+
+      - setup_remote_docker:
+          version: 20.10.14
+          docker_layer_caching: true
+
+      # build and push Docker image
+      - run: |
+          TAG=0.1.$CIRCLE_BUILD_NUM
+          docker build -t CircleCI-Public/circleci-demo-docker:$TAG .
+          echo $DOCKER_PASSWORD | docker login -u $DOCKER_LOGIN --password-stdin
+          docker push matthlc92/$IMAGE_NAME:$TAG
 
 workflows:
   build_test:
