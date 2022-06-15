@@ -2,13 +2,12 @@ version: 2.1
 
 orbs:
   python: circleci/python@2.0.3
-  docker: circleci/docker@2.1.1
 
 jobs:
   build_and_test:
     executor: python/default # use the default executor defined within the orb
     steps:
-      - checkout
+      - checkout # checkout source code
       - python/install-packages:
           pkg-manager: pip
       - run:
@@ -21,23 +20,16 @@ jobs:
           root: ~/project
           paths:
             - .
+      - run:
+          name: build and push Docker image
+          command: |
+            docker build -t matthlc92/$IMAGE_NAME:$TAG .
+            echo $DOCKER_PWD | docker login -u $DOCKER_LOGIN --password-stdin
+            docker push matthlc92/$IMAGE_NAME:$TAG
 
-  docker_build_and_push:
-    executor: docker/docker
-    steps:
-      - setup_remote_docker
-      - checkout
-      - docker/check
-      - docker/build:
-          image: ${DOCKER_LOGIN}/$IMAGE_NAME
+
 
 workflows:
-
   build_test:
     jobs:
       - build_and_test
-      - docker_build_and_push:
-          context: ENV_VAR_LETTING
-          requires:
-            - build_and_test
-
