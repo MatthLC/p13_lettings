@@ -28,7 +28,7 @@ jobs:
         - checkout
         - docker/check
         - docker/build:
-            image: $DOCKER_LOGIN/$DOCKER_NAME
+            image: $CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME
 
 workflows:
   build_test:
