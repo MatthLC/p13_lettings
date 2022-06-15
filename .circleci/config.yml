@@ -23,12 +23,13 @@ jobs:
             - .
 
   docker_build_and_push:
-      executor: docker/docker
-      steps:
-        - setup_remote_docker
-        - checkout
-        - docker/build:
-            image : ${DOCKER_LOGIN}/$IMAGE_NAME
+    executor: docker/docker
+    steps:
+      - setup_remote_docker
+      - checkout
+      - docker/check
+      - docker/build:
+          image: ${DOCKER_LOGIN}/$IMAGE_NAME
 
 workflows:
 
