@@ -31,4 +31,4 @@ workflows:
       - build_and_test
       - lint:
           requires:
-            build_and_test
+            - build_and_test
