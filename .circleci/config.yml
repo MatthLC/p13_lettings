@@ -30,8 +30,8 @@ jobs:
 
 
 workflows:
-  
-  env_vars:
+
+  test-env-vars:
     jobs:
       - build:
           context: ENV_VAR_LETTING
