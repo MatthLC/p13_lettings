@@ -34,5 +34,4 @@ workflows:
   build_test:
     jobs:
       - build_and_test:
-          context: 
-              - ENV_VAR_LETTING
+          context: ENV_VAR_LETTING
