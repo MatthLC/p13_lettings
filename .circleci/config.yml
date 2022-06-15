@@ -18,13 +18,6 @@ jobs:
           paths:
             - .
 
-  test:
-    executor: python/default
-    steps:
-      - run:
-          name: Run tests2
-          command: python -m pytest
-
   lint: 
     executor: python/default
     steps:
@@ -37,8 +30,5 @@ workflows:
     jobs:
       - build_and_test
       - test:
-          requires:
-            - build_and_test
-      - lint:
           requires:
             - build_and_test
