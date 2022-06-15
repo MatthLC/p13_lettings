@@ -10,7 +10,7 @@ orbs:
 jobs:
   build:
     docker:
-      -image: cimg/python:3.10.2
+      -image: letting:latest
        auth:
         username: matthlc92
         password: Doookie92
