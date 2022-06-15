@@ -31,10 +31,11 @@ jobs:
 
 workflows:
 
-  test-env-vars:
+  env_vars:
     jobs:
       - build:
-          context: ENV_VAR_LETTING
+          context: 
+            - ENV_VAR_LETTING
 
   build_test:
     jobs:
