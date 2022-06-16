@@ -3,9 +3,10 @@ version: 2.1
 orbs:
   python: circleci/python@2.0.3
   docker: circleci/docker@2.1.1
+  heroku: circleci/heroku@1.2.6
 
 jobs:
-  build_and_test:
+  test_and_lint:
     executor: python/default # use the default executor defined within the orb
     steps:
       - checkout # checkout source code
@@ -22,7 +23,7 @@ jobs:
           paths:
             - .
 
-  image_and_push:
+  docker_build_and_push:
     docker:
       - image: cimg/base:2022.06
         auth:
@@ -41,10 +42,24 @@ jobs:
           echo $DOCKER_PASSWORD | docker login -u $DOCKER_LOGIN --password-stdin
           docker push $DOCKER_LOGIN/$IMAGE_NAME:$TAG
 
+  deploy_to_heroku:
+    executor: heroku/default
+    steps:
+      - checkout
+      - heroku/install
+      - heroku/push-docker-image:
+          app-name: test-mlc92
+      - heroku/release-docker-image:
+          app-name: test-mlc92
+
+
 workflows:
   build_test:
     jobs:
-      - build_and_test
-      - image_and_push:
+      - test_and_lint
+      - docker_build_and_push:
           requires:
-            - build_and_test
+            - test_and_lint
+      - deploy_to_heroku:
+          requires:
+            - docker_build_and_push
