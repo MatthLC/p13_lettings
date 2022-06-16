@@ -47,10 +47,7 @@ jobs:
     steps:
       - checkout
       - heroku/install
-      - heroku/push-docker-image:
-          app-name: test-mlc92
-      - heroku/release-docker-image:
-          app-name: test-mlc92
+      - heroku/deploy-via-git
 
 
 workflows:
