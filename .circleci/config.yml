@@ -52,6 +52,7 @@ jobs:
       - checkout
       - setup_remote_docker
       - run: |
+          echo $DOCKER_PASSWORD | docker login -u $DOCKER_LOGIN --password-stdin
           docker tag $DOCKER_LOGIN/$IMAGE_NAME:$TAG registery.heroku.com/$HEROKU_APP_NAME/web
           docker push registry.heroku.com/$HEROKU_APP_NAME/web
           heroku container:release web
