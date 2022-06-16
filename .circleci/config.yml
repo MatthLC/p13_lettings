@@ -42,13 +42,6 @@ jobs:
           echo $DOCKER_PASSWORD | docker login -u $DOCKER_LOGIN --password-stdin
           docker push $DOCKER_LOGIN/$IMAGE_NAME:$TAG
 
-  deploy_to_heroku:
-    executor: heroku/default
-    steps:
-      - checkout
-      - heroku/install
-      - heroku/deploy-via-git
-
 
 workflows:
   build_test:
@@ -57,6 +50,6 @@ workflows:
       - docker_build_and_push:
           requires:
             - test_and_lint
-      - deploy_to_heroku:
+      - heroku/deploy-via-git:
           requires:
             - docker_build_and_push
