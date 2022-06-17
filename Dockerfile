@@ -9,10 +9,11 @@ RUN pip install --upgrade pip
 COPY requirements.txt /app
 RUN pip install -r requirements.txt
 
+COPY ./entrypoint.sh ./entrypoint.sh
 COPY . /app
 
 ENV PORT=8000
 
-ENTRYPOINT ["python manage.py migrate --noinput"]
+ENTRYPOINT ["./entrypoint.sh"]
 
 CMD python manage.py runserver 0.0.0.0:$PORT
