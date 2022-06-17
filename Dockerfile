@@ -14,6 +14,4 @@ COPY . /app
 
 ENV PORT=8000
 
-ENTRYPOINT ["./entrypoint.sh"]
-
-CMD python manage.py runserver 0.0.0.0:$PORT
+CMD python manage.py migrate && python manage.py runserver 0.0.0.0:$PORT
