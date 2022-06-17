@@ -13,6 +13,4 @@ COPY . /app
 
 ENV PORT=8000
 
-ENTRYPOINT ["python manage.py migrate"]
-
 CMD python manage.py runserver 0.0.0.0:$PORT
