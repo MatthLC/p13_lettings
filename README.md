@@ -78,16 +78,18 @@ Utilisation de PowerShell, comme ci-dessus sauf :
 
 ## Déploiement
 
-### Liens
+### Liens:
 
 Compte collaborateur disponible :
 - Email : mlc.sentry.sharing@gmail.com
 - Password : Openclassrooms.123
 
 Repo :
+- CircleCi : [CircleCi p13_orange_county_lettings](https://app.circleci.com/pipelines/github/MatthLC/p13_orange_county_lettings)
 - Docker : [Docker tags](https://hub.docker.com/r/matthlc92/oc-lettings-docker-build/tags)
 - Heroku (se connecter avec le compte ci-dessus) : [Heroku oc-lettings-1337](https://dashboard.heroku.com/apps/oc-lettings-1337)
 - Sentry (se connecter avec le compte ci-dessus) : [Sentry oc-lettings-sentry](https://sentry.io/organizations/student-x52/issues/)
+
 
 
 ### Conception:
@@ -97,17 +99,19 @@ Orange County Letting est une application développée avec Django et partagée 
 
 Route du déploiement :
 1. GitHub : Commit
-2. CircleCI : Exécution du script config.yml
-3. CircleCI/Script : installation de l'environnement Python et lancement des tests & flake8
-4. CircleCI/Script : installation de Docker et Build/Push de l'image vers le compte Docker
-5. CircleCI/Script : Installation Heroku et déploiement de l'image vers Heroku pour éxécution
+2. CircleCI : Exécution du script .circleci/config.yml
+3. CircleCI/Script (Toutes les branches ) : installation de l'environnement Python et lancement des tests & flake8
+4. CircleCI/Script (Branche main seulement) : installation de Docker et Build/Push de l'image vers le compte Docker à partir du Dockerfile
+5. CircleCI/Script (Branche main seulement) : Installation Heroku et déploiement de l'image vers Heroku pour éxécution
 6. Sentry : Surveillance de l'application en production sur Heroku
 
 ### Prérequis
 
-Installer les applications suivantes:
+Pour un développement en local, installer les applications suivantes:
 - [Docker](https://www.docker.com/get-started/)
 - [Heroku](https://devcenter.heroku.com/articles/heroku-cli)
+
+
 
 
 
