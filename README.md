@@ -75,3 +75,27 @@ Utilisation de PowerShell, comme ci-dessus sauf :
 
 - Pour activer l'environnement virtuel, `.\venv\Scripts\Activate.ps1` 
 - Remplacer `which <my-command>` par `(Get-Command <my-command>).Path`
+
+## Déploiement
+
+### Conception:
+![schema_deploy](https://user-images.githubusercontent.com/85108007/175058909-d16d216b-7e44-4a42-ad4b-31362c1eaa8a.PNG)
+
+Orange County Letting est une application développée avec Django et partagée via GitHub. A chaque commit réalisé, CircleCI exécutera le script `config.yml` présent dans le dossier `.circle`.
+
+Route du déploiement :
+1. GitHub : Commit
+2. CircleCI : Exécution du script config.yml
+3. CircleCI/Script : installation de l'environnement Python et lancement des tests & flake8
+4. CircleCI/Script : installation de Docker et Build/Push de l'image vers le compte Docker
+5. CircleCI/Script : Installation Heroku et déploiement de l'image vers Heroku pour éxécution
+6. Sentry : Surveillance de l'application en production sur Heroku
+
+### Prérequis
+
+Installer les applications suivantes:
+- [Docker](https://www.docker.com/get-started/)
+- [Heroku](https://devcenter.heroku.com/articles/heroku-cli)
+
+
+
