@@ -112,7 +112,7 @@ Le déploiement est entièrement automatisé
 - Docker : Dockerfile
 - CircleCI : /.circleci/config.yml
   - Lancement des tests & flake 8, Job : test_and_lint
-  - Build & push de l'image vers Docker, Jobs: docker_build_and_push
+  - Build & push de l'image vers Docker, Job : docker_build_and_push
   - Déploiement vers Heroku, Job : deploy_to_heroku
 - Sentry : /oc_lettings_site/settings.py
   - sentry_sdk (Une variable d'environnement est utilisée afin de masquer la clé)
@@ -129,5 +129,17 @@ Toutes les variables devant être masquées se trouvent sur CircleCi en tant que
 | HEROKU_APP_NAME | Nom de l'application sur Heroku : oc-lettings-1337 |
 | SECRET_KEY | Clé Django |
 | SENTRY_DNS | DNS Sentry |
+| DEBUG | DEBUG de Django initialisé à False |
+
+### Lancement d'une image Docker [Docker tags](https://hub.docker.com/r/matthlc92/oc-lettings-docker-build/tags)
+
+Pour lancer une image en local :
+```
+tagname est le tag de l'image
+docker run -d -p 8000:8000 matthlc92/oc-lettings-docker-build:tagname
+
+exemple:
+docker run -d -p 8000:8000 matthlc92/oc-lettings-docker-build:9891ee25ce447303ef9d9a59cb732c5adf3d5ec1
+```
 
 
