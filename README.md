@@ -92,7 +92,7 @@ Repo :
 - Application en production : 
   - [oc-lettings-1337](https://oc-lettings-1337.herokuapp.com/)
   - [oc-lettings-1337 Admin](https://oc-lettings-1337.herokuapp.com/admin/)
-  - [oc-lettings-1337 Sentry debug](https://oc-lettings-1337.herokuapp.com/dentry-debug/)
+  - [oc-lettings-1337 Sentry debug](https://oc-lettings-1337.herokuapp.com/sentry-debug/)
 
 
 ### Conception
